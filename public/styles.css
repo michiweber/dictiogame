@@ -10,6 +10,10 @@ html, document, body {
     font-size: 10px;
 }
 
+div[data-placeholder] {
+    display: inline;
+}
+
 .container {
     width: 100%;
     height: 100%;
@@ -28,17 +32,37 @@ html, document, body {
 }
 
 .content-left {
+    position: relative;
     flex: 1 1 100%;
     text-align: right;
+    height: 25rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     padding-right: 2rem;
+}
+.content-left h1 {
+    margin: 0;
+    padding: 0;
 
-    h1 {
-        margin: 0;
-        padding: 0;
+    font-size: 2rem;
+}
 
-        font-size: 2rem;
-    }
+.content-left button {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    right: 2rem;
+    /*display: none;*/
+    cursor: pointer;
+    margin-top: 1rem;
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    padding: .5rem 2rem;
+    color: #ffffff;
+    background: #7e92d5;
 }
 
 .content-center {
@@ -96,18 +120,84 @@ html, document, body {
     animation: spin 1s linear infinite;
 }
 
-#username {
+/* Content */
+#start {
+}
+
+#host, #join {
     display: none;
     margin-left: 2rem;
+    max-width: 50rem;
 }
-#username form {
-    display: flex;
-    align-items: center;
+#host form,
+#join form {
+
 }
-#username input {
+#host input,
+#join input {
     border: 1px solid #000000;
     border-radius: 1rem;
     padding: .5rem 1rem;
+}
+#host button,
+#join button {
+    cursor: pointer;
+    margin-top: 1rem;
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    padding: .5rem 2rem;
+    color: #ffffff;
+    background-image: linear-gradient(to right, #3056d2, #892aa1, #c94a4a);
+}
+#host button:hover, #host button:focus,
+#join button:hover, #join button:focus {
+    background-image: linear-gradient(to right, #2442a4, #621e73, #a13b3b);
+}
+#host button:active,
+#join button:active {
+    background-image: linear-gradient(to right, #1b3179, #41144d, #772b2b);
+}
+
+#lobby {
+    display: none;
+    margin: 0 2rem;
+    max-width: 50rem;
+}
+#lobby h2 {
+    margin-bottom: 4rem;
+}
+#lobby h2 div {
+    color: #3056d2;
+}
+#lobby h3 {
+    position: relative;
+    height: 2rem;
+}
+#lobby h3 span {
+    position: absolute;
+    margin-left: 2rem;
+    padding: 0 1rem;
+    background: #ffffff;
+    z-index: 10;
+}
+#lobby h3:before {
+    content: " ";
+    position: absolute;
+    top: .6rem;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, #3056d2, #892aa1, #c94a4a) !important;
+}
+#lobby div {
+    width: 100%;
+}
+#lobby ul {
+    margin-bottom: 4rem;
+}
+#lobby ul li {
+    font-size: 1.2rem;
+    border: 1px solid #892aa1;
+    border-radius: 1rem;
 }
 
 /* Animations */

@@ -6,6 +6,8 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
+const rooms = {};
+
 /* Set the view engine to ejs */
 app.set('view engine', 'ejs');
 
@@ -24,8 +26,51 @@ app.get('/socket.io.js', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    const uuid = crypto.randomBytes(16).toString('hex');
-    socket.emit('uuid', uuid);
+
+    /* Handle the entrance */
+    if (socket.handshake.query.room === '') {
+        /* Generate room id */
+        const uuid = crypto.randomBytes(16).toString('hex');
+        /* Generate room object */
+        rooms[uuid] = {
+            players: [],
+            messages: [],
+            rounds: []
+        };
+        /* Write username in room */
+        rooms[uuid].players.push(socket.handshake.query.username);
+        /* Enter room */
+        socket.join(uuid);
+        /* Send room id */
+        socket.emit('roomId', uuid);
+        /* Broadcast the object */
+        io.to(uuid).emit('roomUpdate', rooms[uuid]);
+    } else if (rooms[socket.handshake.query.room] !== undefined) {
+        /* Room id */
+        const room = socket.handshake.query.room;
+        /* Write username in room */
+        rooms[room].players.push(socket.handshake.query.username);
+        /* Enter room */
+        socket.join(room);
+        /* Send room id */
+        socket.emit('roomId', room);
+        /* Broadcast the object */
+        io.to(room).emit('roomUpdate', rooms[room]);
+    }
+
+    /* Handle the disconnect */
+    socket.on("disconnecting", () => {
+        /* Room id */
+        const room = socket.handshake.query.room;
+        /* Write username in room */
+        if (rooms[room] !== undefined) {
+            rooms[room].players = rooms[room].players.filter(player => player !== socket.handshake.query.username);
+        }
+        /* Enter room */
+        socket.leave(room);
+        /* Broadcast the object */
+        io.to(room).emit('roomUpdate', rooms[room]);
+    });
 });
 
 /* Start the server on port 3000 */
