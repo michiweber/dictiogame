@@ -49,6 +49,11 @@ function connect(roomId, username) {
             case 'roomUpdate':
                 onRoomUpdate(args[0]);
                 break;
+            case 'error':
+                switchToStart(() => {
+                    showError(args[0]);
+                });
+                break;
         }
     });
 }
@@ -81,6 +86,11 @@ function switchToHost(callback) {
         event.preventDefault();
         callback(input.value);
     }
+}
+
+function showError(error) {
+    document.getElementById('error').style.display = 'block';
+    update('error', error);
 }
 
 function switchToJoin(callback) {
@@ -144,6 +154,15 @@ function showLeave(callback) {
         /* Remove local storage */
         window.localStorage.removeItem('dictio-roomId');
         window.localStorage.removeItem('dictio-username');
+        /* Remove lobby class from other content elements */
+        const contentLeft = document.getElementsByClassName('content-left')[0];
+        if (contentLeft !== null && contentLeft !== undefined) {
+            contentLeft.classList.remove('lobby');
+        }
+        const contentCenter = document.getElementsByClassName('content-center')[0];
+        if (contentCenter !== null && contentCenter !== undefined) {
+            contentCenter.classList.remove('lobby');
+        }
         /* Switch back */
         hideLeave(() => {
             switchToStart(() => {});
@@ -191,12 +210,24 @@ function switchToLoading(callback) {
 function switchToLobby(callback) {
     hideBack(() => {
         showLeave(() => {
+            /* Add lobby class to other content elements */
+            const contentLeft = document.getElementsByClassName('content-left')[0];
+            if (contentLeft !== null && contentLeft !== undefined) {
+                contentLeft.classList.add('lobby');
+            }
+            const contentCenter = document.getElementsByClassName('content-center')[0];
+            if (contentCenter !== null && contentCenter !== undefined) {
+                contentCenter.classList.add('lobby');
+            }
+            /* Show right content */
             const children = document.getElementsByClassName('content-right')[0].children;
             const count = children.length;
             for (let i = 0; i < count; i++) {
                 const child = children[i];
                 if (child.id === 'lobby') {
                     child.style.display = 'block';
+                    /* Enable the chat functionality */
+                    enableChat(child);
                 } else {
                     child.style.display = 'none';
                 }
@@ -204,6 +235,22 @@ function switchToLobby(callback) {
             callback();
         });
     });
+}
+
+function enableChat(htmlWrap) {
+    /* Chat */
+    const chat = htmlWrap.getElementsByClassName('chat')[0];
+    /* Form */
+    const form = chat.getElementsByTagName('form')[0];
+    /* Subscribe form */
+    form.onsubmit = function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        /* The message */
+        const message = event.target.getElementsByTagName('input')[0].value;
+        /* Send the message */
+        socket.emit(message);
+    }
 }
 
 function update(placeholder, value) {
@@ -218,13 +265,13 @@ function update(placeholder, value) {
 /* Main action */
 function main() {
 
-    /* Check if credentials are stored in case of refresh */
-    const storedRoomId = window.localStorage.getItem('dictio-roomId');
-    const storedUsername = window.localStorage.getItem('dictio-username');
-
-    if (storedRoomId !== null && storedUsername !== null) {
-        connect(storedRoomId, storedUsername);
-    }
+    // /* Check if credentials are stored in case of refresh */
+    // const storedRoomId = window.localStorage.getItem('dictio-roomId');
+    // const storedUsername = window.localStorage.getItem('dictio-username');
+    //
+    // if (storedRoomId !== null && storedUsername !== null) {
+    //     connect(storedRoomId, storedUsername);
+    // }
 
 }
 main();

@@ -27,18 +27,22 @@ app.get('/socket.io.js', (req, res) => {
 
 io.on('connection', (socket) => {
 
+    /* Username */
+    const username = socket.handshake.query.username;
+
     /* Handle the entrance */
     if (socket.handshake.query.room === '') {
         /* Generate room id */
         const uuid = crypto.randomBytes(16).toString('hex');
         /* Generate room object */
         rooms[uuid] = {
+            master: username,
             players: [],
             messages: [],
             rounds: []
         };
         /* Write username in room */
-        rooms[uuid].players.push(socket.handshake.query.username);
+        rooms[uuid].players.push(username);
         /* Enter room */
         socket.join(uuid);
         /* Send room id */
@@ -48,14 +52,19 @@ io.on('connection', (socket) => {
     } else if (rooms[socket.handshake.query.room] !== undefined) {
         /* Room id */
         const room = socket.handshake.query.room;
-        /* Write username in room */
-        rooms[room].players.push(socket.handshake.query.username);
-        /* Enter room */
-        socket.join(room);
-        /* Send room id */
-        socket.emit('roomId', room);
-        /* Broadcast the object */
-        io.to(room).emit('roomUpdate', rooms[room]);
+        /* Check if the username is already taken */
+        if (rooms[room].players.indexOf(socket.handshake.query.username) !== -1) {
+            socket.emit('error', 'Username has already been taken');
+        } else {
+            /* Write username in room */
+            rooms[room].players.push(socket.handshake.query.username);
+            /* Enter room */
+            socket.join(room);
+            /* Send room id */
+            socket.emit('roomId', room);
+            /* Broadcast the object */
+            io.to(room).emit('roomUpdate', rooms[room]);
+        }
     }
 
     /* Handle the disconnect */
