@@ -3,62 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>Dictio game</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+      <script type="importmap">
+        {
+          "imports": {
+            "@material/web/": "https://esm.run/@material/web/"
+          }
+        }
+      </script>
+      <script type="module">
+        import '@material/web/all.js';
+        import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+      </script>
 </head>
 <body>
-    <div id="app">
-        <div id="error-container">
-            <div id="error" data-placeholder="error">Mockup error message</div>
-        </div>
-        <div class="container">
-            <div class="container-inner">
-                <div class="content-left">
-                    <h1>Dictio game</h1>
-                    <button id="back">Back</button>
-                    <button id="leave">Leave</button>
-                </div>
-                <div class="content-center">
-                    <div class="seperator"></div>
-                </div>
-                <div class="content-right">
-                    <div id="loading"></div>
-                    <ul id="start">
-                        <li><a href="javascript:hostGame();">Host game</a></li>
-                        <li><a href="javascript:joinGame();">Join game</a></li>
-                    </ul>
-                    <div id="host">
-                        <form>
-                            <input type="text" name="username" required="required" placeholder="Enter username"></input><br />
-                            <button type="submit">Enter room</button>
-                        </form>
-                    </div>
-                    <div id="join">
-                        <form>
-                            <input type="text" name="roomId" required="required" placeholder="Enter code"></input>
-                            <input type="text" name="username" required="required" placeholder="Enter username"></input><br />
-                            <button type="submit">Enter room</button>
-                        </form>
-                    </div>
-                    <div id="lobby">
-                        <h2>Room <div data-placeholder="roomId"></div></h2>
-                        <h3><span>Players</span></h3>
-                        <div class="players">
-                            <div data-placeholder="players"></div>
-                        </div>
-                        <h3><span>Chat</span></h3>
-                        <div class="chat">
-                            <div class="chat-window" data-placeholder="chat"></div>
-                            <div class="chat-message">
-                                <form>
-                                    <input type="text" name="message" />
-                                    <button type="submit">Send</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="materialContainer">
+
+
+       <div class="box">
+
+          <div class="title">LOGIN</div>
+
+          <div class="input">
+             <label for="name">Username</label>
+             <input type="text" name="name" id="name">
+             <span class="spin"></span>
+          </div>
+
+          <div class="input">
+             <label for="pass">Password</label>
+             <input type="password" name="pass" id="pass">
+             <span class="spin"></span>
+          </div>
+
+          <div class="button login">
+             <button><span>GO</span> <i class="fa fa-check"></i></button>
+          </div>
+
+          <a href="" class="pass-forgot">Forgot your password?</a>
+
+       </div>
+
+       <div class="overbox">
+          <div class="material-button alt-2"><span class="shape"></span></div>
+
+          <div class="title">REGISTER</div>
+
+          <div class="input">
+             <label for="regname">Username</label>
+             <input type="text" name="regname" id="regname">
+             <span class="spin"></span>
+          </div>
+
+          <div class="input">
+             <label for="regpass">Password</label>
+             <input type="password" name="regpass" id="regpass">
+             <span class="spin"></span>
+          </div>
+
+          <div class="input">
+             <label for="reregpass">Repeat Password</label>
+             <input type="password" name="reregpass" id="reregpass">
+             <span class="spin"></span>
+          </div>
+
+          <div class="button">
+             <button><span>NEXT</span></button>
+          </div>
+
+
+       </div>
+
     </div>
     <script src="/socket.io.js"></script>
     <script src="/script.js"></script>

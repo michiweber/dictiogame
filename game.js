@@ -15,8 +15,8 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
     res.render('index');
 });
-app.get('/styles.css', (req, res) => {
-    res.sendFile(path.join(__dirname + '/public/styles.css'));
+app.get('/style.css', (req, res) => {
+    res.sendFile(path.join(__dirname + '/public/style.css'));
 });
 app.get('/script.js', (req, res) => {
     res.sendFile(path.join(__dirname + '/public/script.js'));

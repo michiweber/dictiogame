@@ -1,0 +1,260 @@
+* {
+    font-family: sans-serif;
+}
+
+html, document, body {
+    margin: 0;
+    padding: 0;
+
+    height: 100%;
+    font-size: 10px;
+}
+
+#app {
+    /*height: 100%;*/
+}
+
+/*div[data-placeholder] {*/
+/*    display: inline;*/
+/*}*/
+
+/*#app {*/
+/*    height: 100%;*/
+
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*#error-container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+/*#error {*/
+/*    display: none;*/
+/*    margin: 2rem;*/
+/*    border: 1px solid #ad6363;*/
+/*    padding: 2rem;*/
+/*    color: #ad6363;*/
+/*}*/
+
+/*.container {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.container-inner {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.content-left {*/
+/*    position: relative;*/
+/*    flex: 1 1 100%;*/
+/*    text-align: right;*/
+/*    height: 25rem;*/
+
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+
+/*    padding-right: 2rem;*/
+/*}*/
+/*.content-left h1 {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+
+/*    font-size: 2rem;*/
+/*}*/
+
+/*.content-left button {*/
+/*    display: none;*/
+/*    position: absolute;*/
+/*    bottom: 0;*/
+/*    right: 2rem;*/
+/*    !*display: none;*!*/
+/*    cursor: pointer;*/
+/*    margin-top: 1rem;*/
+/*    border: 1px solid transparent;*/
+/*    border-radius: 1rem;*/
+/*    padding: .5rem 2rem;*/
+/*    color: #ffffff;*/
+/*    background: #7e92d5;*/
+/*}*/
+/*.content-left.lobby {*/
+/*    height: 51rem;*/
+/*}*/
+
+/*.content-center {*/
+/*    .seperator {*/
+/*        width: .2rem;*/
+/*        height: 25rem;*/
+/*        background: linear-gradient(180deg, #3056d2 0%, #892aa1 50%, #c94a4a 100%);*/
+/*    }*/
+/*}*/
+/*.content-center.lobby .seperator {*/
+/*    height: 51rem;*/
+/*}*/
+
+/*.content-right {*/
+/*    flex: 1 1 100%;*/
+
+/*    ul {*/
+/*        margin: 0;*/
+/*        padding: 0;*/
+
+/*        list-style: none;*/
+/*    }*/
+
+/*    li {*/
+/*        margin: 1rem 0;*/
+/*        padding: 1rem 0 1rem 2rem;*/
+/*    }*/
+
+/*    li a, li a:visited {*/
+/*        background: #7e92d5;*/
+/*        border-radius: 1rem;*/
+/*        padding: 1rem 2rem;*/
+
+/*        text-decoration: none;*/
+/*        font-size: 1.4rem;*/
+
+/*        color: #ffffff;*/
+/*    }*/
+
+/*    li a:hover, li a:focus {*/
+/*        background: #6879b2;*/
+/*    }*/
+
+/*    li a:active {*/
+/*        background: #4e5a85;*/
+/*    }*/
+/*}*/
+
+/*!* Loading *!*/
+/*#loading {*/
+/*    display: none;*/
+/*    margin-left: 20px;*/
+/*    width: 40px;*/
+/*    height: 40px;*/
+/*    border-radius: 50%;*/
+/*    border: 1px solid transparent;*/
+/*    background-image: linear-gradient(to right, #3056d2, #892aa1, #c94a4a);*/
+/*    animation: spin 1s linear infinite;*/
+/*}*/
+
+/*!* Content *!*/
+/*#start {*/
+/*}*/
+
+/*#host, #join {*/
+/*    display: none;*/
+/*    margin-left: 2rem;*/
+/*    max-width: 50rem;*/
+/*}*/
+/*#lobby .chat form,*/
+/*#host form,*/
+/*#join form {*/
+
+/*}*/
+/*#lobby .chat input,*/
+/*#host input,*/
+/*#join input {*/
+/*    border: 1px solid #000000;*/
+/*    border-radius: 1rem;*/
+/*    padding: .5rem 1rem;*/
+/*}*/
+/*#lobby .chat button,*/
+/*#host button,*/
+/*#join button {*/
+/*    cursor: pointer;*/
+/*    margin-top: 1rem;*/
+/*    border: 1px solid transparent;*/
+/*    border-radius: 1rem;*/
+/*    padding: .5rem 2rem;*/
+/*    color: #ffffff;*/
+/*    background-image: linear-gradient(to right, #3056d2, #892aa1, #c94a4a);*/
+/*}*/
+/*#lobby .chat button:hover, #lobby .chat button:focus,*/
+/*#host button:hover, #host button:focus,*/
+/*#join button:hover, #join button:focus {*/
+/*    background-image: linear-gradient(to right, #2442a4, #621e73, #a13b3b);*/
+/*}*/
+/*#lobby .chat button:active,*/
+/*#host button:active,*/
+/*#join button:active {*/
+/*    background-image: linear-gradient(to right, #1b3179, #41144d, #772b2b);*/
+/*}*/
+
+/*#lobby {*/
+/*    display: none;*/
+/*    margin: 0 2rem;*/
+/*    max-width: 50rem;*/
+/*}*/
+/*#lobby h2 {*/
+/*    margin-bottom: 4rem;*/
+/*}*/
+/*#lobby h2 div {*/
+/*    color: #3056d2;*/
+/*}*/
+/*#lobby h3 {*/
+/*    position: relative;*/
+/*    height: 2rem;*/
+/*}*/
+/*#lobby h3 span {*/
+/*    position: absolute;*/
+/*    margin-left: 2rem;*/
+/*    padding: 0 1rem;*/
+/*    background: #ffffff;*/
+/*    z-index: 10;*/
+/*}*/
+/*#lobby h3:before {*/
+/*    content: " ";*/
+/*    position: absolute;*/
+/*    top: .6rem;*/
+/*    width: 100%;*/
+/*    height: 1px;*/
+/*    background: linear-gradient(to right, #3056d2, #892aa1, #c94a4a) !important;*/
+/*}*/
+/*#lobby div {*/
+/*    width: 100%;*/
+/*}*/
+/*#lobby ul {*/
+/*    margin-bottom: 4rem;*/
+/*}*/
+/*#lobby ul li {*/
+/*    font-size: 1.2rem;*/
+/*    border: 1px solid #892aa1;*/
+/*    border-radius: 1rem;*/
+/*}*/
+/*#lobby .chat {*/
+/*    height: 30rem;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+/*#lobby .chat .chat-window {*/
+/*    flex: 1 1 100%;*/
+/*}*/
+/*#lobby .chat form {*/
+/*    display: flex;*/
+/*}*/
+/*#lobby .chat form input {*/
+/*    flex: 1 1 100%;*/
+/*}*/
+/*#lobby .chat form button {*/
+/*    margin: 0 0 0 1rem;*/
+/*}*/
+
+/*!* Animations *!*/
+/*@keyframes spin {*/
+/*    0% { transform: rotate(0deg) }*/
+/*    100% { transform: rotate(360deg) }*/
+/*}*/
